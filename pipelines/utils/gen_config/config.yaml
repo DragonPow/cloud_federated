@@ -1,0 +1,44 @@
+aml:
+  # subscription_id: "&lt;SUBSCRIPTION_ID&gt;"
+  # resource_group_name: "&lt;RESOURCE_GROUP&gt;"
+  # workspace_name: "&lt;AML_WORKSPACE_NAME&gt;"
+
+federated_learning:
+  orchestrator:
+    compute: "orchestrator-01"
+    datastore: "datastore_orchestrator"
+
+  silos:
+
+    - name: silo0
+      computes:
+      - silo-0
+      datastore: datastore_silo0
+      silo_data:
+        type: uri_folder
+        mode: 'download'
+        path: azureml://datastores/datastore_silo0/paths/federated_learning/mnist
+
+    - name: silo1
+      computes:
+      - silo-1
+      datastore: datastore_silo1
+      silo_data:
+        type: uri_folder
+        mode: 'download'
+        path: azureml://datastores/datastore_silo1/paths/federated_learning/mnist
+
+    - name: silo2
+      computes:
+      - silo-2
+      datastore: datastore_silo2
+      silo_data:
+        type: uri_folder
+        mode: 'download'
+        path: azureml://datastores/datastore_silo2/paths/federated_learning/mnist
+
+training_parameters:
+  num_of_iterations: 3
+  epochs: 5
+  lr: 0.001
+  batch_size: 128

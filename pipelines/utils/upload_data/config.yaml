@@ -1,0 +1,28 @@
+# CONFIG FILE FOR UPLOADING DATASETS TO CORRESPONDING REGIONS
+
+# References to Azure ML workspace (use cli args to override)
+aml:
+  princial_id: "d1a1684e-e99f-40b6-87f0-02654252eb55"
+  subscription_id: "22082efb-9ee1-4797-a03d-67cb29c3abf0"
+  resource_group_name: "distributed_computing"
+  workspace_name: "vungocthach"
+
+# Parameters to generate the FL graph
+federated_learning:
+  host:
+    compute: orchestrator-01
+    datastore: datastore_orchestrator
+  silos: # silos are provided as a list
+    - compute: pneumonia0 # name of the compute for silo X
+      datastore: datastore_silo0 # name of the datastore for silo X
+
+    - compute: pneumonia1 # we are repeating over the same config for silo 2
+      datastore: datastore_silo1
+
+    - compute: pneumonia2 # we are repeating over the same config for silo 3
+      datastore: datastore_silo2
+
+confidentiality:
+  enable: false
+  keyvault: https://vungocthach3512733075.vault.azure.net # url of the keyvault
+  key_name: 34299521-4a37-44b1-bbbd-f7cfa5c34eab # name of the secret containing your encryption public key

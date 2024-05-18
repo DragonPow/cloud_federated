@@ -1,0 +1,18 @@
+aml:
+  # subscription_id: "&lt;SUBSCRIPTION_ID&gt;"
+  # resource_group_name: "&lt;RESOURCE_GROUP&gt;"
+  # workspace_name: "&lt;AML_WORKSPACE_NAME&gt;"
+
+federated_learning:
+  orchestrator:
+    compute: "$orchestrator"
+    datastore: "datastore_orchestrator"
+
+  silos:
+$silos
+
+training_parameters:
+  num_of_iterations: $num_of_iterations
+  epochs: $epochs
+  lr: $lr
+  batch_size: $batch_size
